@@ -1,0 +1,69 @@
+.hero {
+    background-image: url(../images/thousand-01\ 1.png);
+    background-repeat: no-repeat;
+    background-position: top 72px right 105px;
+}
+
+.container--hero {
+    padding-bottom: 222px;
+}
+
+.hero__panel {
+    max-width: 471px;
+    padding-top: 105px;
+}
+
+
+.hero__title {
+    font-size: 64px;
+    line-height: 80px;
+    margin-top: 0px;
+    margin-bottom: 74px;
+}
+
+.hero__subtitle {
+    font-weight: 700;
+    letter-spacing: 0px;
+    font-size: 22px;
+    line-height: 100%;
+    margin-bottom: 21px;
+}
+
+.hero__funny-line {
+    margin: 0;
+    margin-bottom: 48px;
+    padding: 0;
+    height: 0;
+    width: 32px;
+    border: 1px solid black;
+    border-radius: 2px;
+}
+
+.specs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 30px;
+    row-gap: 30px;
+    margin-bottom: 47px;
+}
+
+.specs-grid__option {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    border: 0.8px solid #AFB0B9;
+    border-radius: 6px;
+    background-color: white;
+}
+
+.specs-grid__option p {
+    margin: 0px;
+    padding-left: 30px;
+    color: #4A4C53;
+}
+
+.hero__explore {
+    width: 180px;
+    height: 52px;
+    line-height: 52px;
+}

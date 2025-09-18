@@ -1,0 +1,88 @@
+.destinations {
+    min-height: 740px;
+}
+
+.container--destinations {
+    margin-bottom: 135px;
+    margin-top: 163px;
+}
+
+.container--destinations>:first-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1120px;
+}
+
+.destinations__title {
+    font-size: 36px;
+    line-height: 50px;
+}
+
+.destinations__view-all {
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 60px;
+    letter-spacing: 0%;
+    color: #FB8F1D;
+}
+
+.destinations__view-all>a {
+    color: #FB8F1D;
+}
+
+.travel-gallery {
+    display: flex;
+    justify-content: start;
+    gap: 25px 25px;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+.place-card {
+    width: 261px;
+    height: 332px;
+    border-radius: 8px;
+    margin: 0;
+    position: relative;
+    background-repeat: no-repeat;
+}
+
+.place-card>figcaption {
+    position: absolute;
+    background-color: white;
+    left: 0px;
+    bottom: 0px;
+    padding: 5px 25px 0 0;
+    border-top-right-radius: 8px;
+}
+
+.place-card__name {
+    font-size: 17px;
+    color: #000;
+    font-weight: 600;
+    margin: 0;
+}
+
+.place-card__country {
+    font-size: 15px;
+    color: #7D7987;
+    margin: 0;
+    padding-top: 5px;
+}
+
+.place-card--chill {
+    background-image: url("../images/image 1.png");
+}
+
+.place-card--rock {
+    background-image: url("../images/image\ 2.png")
+}
+
+.place-card--roof {
+    background-image: url("../images/image\ 3.png")
+}
+
+.place-card--flood {
+    background-image: url("../images/image\ 4.png")
+}
