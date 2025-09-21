@@ -5,6 +5,7 @@
 .container--destinations {
     margin-bottom: 135px;
     margin-top: 163px;
+    text-align: start;
 }
 
 .container--destinations>:first-child {
@@ -12,6 +13,7 @@
     justify-content: space-between;
     align-items: center;
     max-width: 1120px;
+    padding-bottom: 56px;
 }
 
 .destinations__title {
@@ -20,15 +22,31 @@
 }
 
 .destinations__view-all {
+    display: block;
     font-weight: 600;
+    position: relative;
     font-size: 17px;
-    line-height: 60px;
-    letter-spacing: 0%;
+    width: 80px;
+    text-align: start;
+    letter-spacing: 0;
     color: #FB8F1D;
+    transition: transform 0.1 ease-out
 }
 
-.destinations__view-all>a {
-    color: #FB8F1D;
+.destinations__view-all:hover {
+    transform: scale(0.95);
+}
+
+.destinations__view-all::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    width: 20px;
+    top: 0;
+    bottom: 0;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-image: url(../images/arrow-next.svg);
 }
 
 .travel-gallery {
@@ -46,14 +64,19 @@
     margin: 0;
     position: relative;
     background-repeat: no-repeat;
+    transition: transform 0.1s ease-in;
+}
+
+.place-card:hover {
+    transform: scale(0.95);
 }
 
 .place-card>figcaption {
     position: absolute;
     background-color: white;
-    left: 0px;
-    bottom: 0px;
-    padding: 5px 25px 0 0;
+    left: -5px;
+    bottom: -5px;
+    padding: 5px 25px 5px 5px;
     border-top-right-radius: 8px;
 }
 
@@ -85,4 +108,12 @@
 
 .place-card--flood {
     background-image: url("../images/image\ 4.png")
+}
+
+@media screen and (max-width: 768px) {
+    .container--destinations> :first-child {
+        flex-direction: column;
+        align-items: start;
+        gap: 10px
+    }
 }

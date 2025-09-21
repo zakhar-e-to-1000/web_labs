@@ -17,18 +17,19 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container container--header">
         <header class="header">
+            <img id="header__menu" class="header__menu" src="images/menu-icon.svg" alt="menu icon" />
             <img src="images/logo.svg" alt="logo" />
-            <nav class="nav">
+            <nav id="header__nav" class="header__nav">
                 <ul>
                     <li><a href="#" class="nav__item">Home</a></li>
                     <li><a href="#" class="nav__item">Destinations</a></li>
                     <li><a href="#" class="nav__item">About</a></li>
                     <li><a href="#" class="nav__item">Partner</a></li>
+                    <a href="#" class="default-button nav__login">Login</a>
+                    <a href="#" class="default-button nav__register">Register</a>
                 </ul>
-                <a href="#" class="nav__login">Login</a>
-                <a href="#" class="nav__register">Register</a>
             </nav>
         </header>
     </div>
@@ -39,20 +40,28 @@
                 <p class="hero__subtitle">Holiday Finder</p>
                 <hr class="hero__funny-line" />
                 <div class="specs-grid">
-                    <div class="specs-grid__option">
-                        <p>Location</p>
+                    <div class="select-wrap">
+                        <select name="" id="" class="hero-select">
+                            <option value="">Activity</option>
+                        </select>
                     </div>
-                    <div class="specs-grid__option">
-                        <p>Activity</p>
+                    <div class="select-wrap">
+                        <select name="" id="" class="hero-select">
+                            <option value="">Country</option>
+                        </select>
                     </div>
-                    <div class="specs-grid__option">
-                        <p>Grade</p>
+                    <div class="select-wrap">
+                        <select name="" id="" class="hero-select">
+                            <option value="">Grade</option>
+                        </select>
                     </div>
-                    <div class="specs-grid__option">
-                        <p>Grade</p>
+                    <div class="select-wrap">
+                        <select name="" id="" class="hero-select">
+                            <option value="">Date</option>
+                        </select>
                     </div>
                 </div>
-                <a href="#" class="default-button hero__explore">Explore</a>
+                <button type="submit" class="default-button hero__explore">Explore</button>
             </form>
     </section>
     <section class="explanation">
@@ -75,7 +84,8 @@
         <div class="container container--destinations">
             <div>
                 <p class="title destinations__title">Featured destinations</p>
-                <p class="destinations__view-all"><a href="#">View all ></a></p>
+                <a href="#" class="destinations__view-all">View all</a>
+                <!-- <p class="destinations__view-all"><a href="#">View all ></a></p> -->
             </div>
             <div class="travel-gallery">
                 <a href="#">
@@ -136,6 +146,7 @@
             </div>
         </div>
     </footer>
+    <script src="js/main.js"></script>
 </body>
 
 </html>

@@ -34,6 +34,11 @@
     height: 28px;
     background-position: center;
     background-repeat: no-repeat;
+    transition: transform 0.1s ease-out;
+}
+
+.icon:hover {
+    transform: scale(0.8);
 }
 
 .icon--tw {

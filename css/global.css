@@ -3,8 +3,16 @@ a {
     display: block;
 }
 
+ul {
+    padding: 0;
+}
+
 li {
     display: block;
+}
+
+p {
+    margin: 0;
 }
 
 body {
@@ -16,17 +24,23 @@ body {
 .container {
     max-width: 1219px;
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 0 20px;
 }
 
 
 .default-button {
+    cursor: pointer;
     color: #fff;
     background: #FB8F1D;
     border: none;
     border-radius: 8px;
     display: block;
     text-align: center;
+    transition: transform 0.1s ease-out;
+}
+
+.default-button:hover {
+    transform: scale(0.95);
 }
 
 .title {
@@ -34,4 +48,10 @@ body {
     font-weight: 700;
     letter-spacing: 0px;
     color: #000;
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        text-align: center;
+    }
 }

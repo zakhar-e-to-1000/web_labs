@@ -2,10 +2,9 @@
     background-color: #F8F8F8;
 }
 
-
-
 .container--expanation {
     display: flex;
+    flex-direction: row;
     /* padding-top: 207px;
     padding-bottom: 129px; */
     min-height: 774px;
@@ -13,9 +12,17 @@
     justify-content: space-between;
 }
 
+.container--expanation>img {
+    max-width: 100%;
+    min-width: 0;
+    height: auto;
+    flex-shrink: 1;
+}
+
 .explanation__text-group {
     max-width: 481px;
-
+    flex-shrink: 1;
+    flex-basis: 481px;
 }
 
 .explanation__title {
@@ -36,4 +43,10 @@
     width: 164px;
     height: 48px;
     line-height: 48px;
+}
+
+@media screen and (max-width: 768px) {
+    .container--expanation {
+        flex-direction: column;
+    }
 }
