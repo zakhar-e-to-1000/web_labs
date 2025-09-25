@@ -116,4 +116,8 @@
         align-items: start;
         gap: 10px
     }
+
+    .travel-gallery {
+        justify-content: center;
+    }
 }

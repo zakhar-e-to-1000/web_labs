@@ -1,13 +1,14 @@
-.grey-area {
+.explanation {
     background-color: #F8F8F8;
 }
 
 .container--expanation {
     display: flex;
     flex-direction: row;
-    /* padding-top: 207px;
-    padding-bottom: 129px; */
-    min-height: 774px;
+    gap: 20px;
+    padding-top: 120px;
+    padding-bottom: 129px;
+    /* min-height: 774px; */
     align-items: center;
     justify-content: space-between;
 }
@@ -48,5 +49,9 @@
 @media screen and (max-width: 768px) {
     .container--expanation {
         flex-direction: column;
+    }
+
+    .explanation__text-group {
+        flex-basis: auto;
     }
 }
