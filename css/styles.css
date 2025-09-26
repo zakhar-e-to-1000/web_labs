@@ -1,0 +1,24 @@
+body {
+    color: black;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.container {
+    min-height: 1000px;
+    min-width: 100px;
+    background-color: yellow;
+    border-radius: 20px;
+    padding: 40px;
+    border: 1px solid grey;
+    flex: 1;
+}
+
+input {
+    display: block;
+}
+
+.search {
+    padding-top: 40px;
+}
