@@ -11,4 +11,11 @@ button {
 body {
     font-family: 'Inter', sans-serif;
     font-weight: 400;
+    background-color: #FF8282;
 }
+
+p {
+    margin: 0;
+}
+
+.main {}

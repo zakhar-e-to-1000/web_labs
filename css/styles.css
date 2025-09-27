@@ -1,4 +1,7 @@
 @import url("./normalize.css");
 @import url("./global.css");
 @import url("./header.css");
-@import url("./main.css")
+@import url("./main.css");
+@import url("./film-view.css");
+@import url("./film-create.css");
+@import url("./film-edit.css");
