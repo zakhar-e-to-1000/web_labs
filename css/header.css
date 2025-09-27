@@ -2,6 +2,12 @@
     background-color: #EDEDED;
 }
 
+.container--header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .header__title {
     font-weight: 500;
     font-size: 48px;
@@ -33,4 +39,17 @@
     max-width: 1400px;
     padding: 0 80px 0 80px;
     font-size: 30px;
+}
+
+.container--sort {
+    min-height: 83px;
+    display: flex;
+    justify-content: start;
+}
+
+.header__sort {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
 }

@@ -1,0 +1,28 @@
+.main {
+    background-color: #FF8282;
+}
+
+.container--main {
+    max-width: 1400px;
+    /* margin: 0 auto; */
+    padding: 50px 80px 90px 80px;
+}
+
+.main__title {
+    font-weight: 600;
+    font-size: 32px;
+    margin: 0;
+    padding-bottom: 50px;
+}
+
+.film-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 305px);
+    gap: 35px;
+}
+
+.film-card {
+    width: 305px;
+    height: 521px;
+    background-color: #fff;
+}
