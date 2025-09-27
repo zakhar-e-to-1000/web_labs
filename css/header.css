@@ -1,0 +1,36 @@
+.header {
+    background-color: #EDEDED;
+}
+
+.header__title {
+    font-weight: 500;
+    font-size: 48px;
+}
+
+.header__create {
+    font-weight: 700;
+    font-size: 32px;
+    cursor: pointer;
+}
+
+.header__create:hover {
+    text-decoration: underline;
+}
+
+.header__search {
+    font-size: 30px;
+    width: 251px;
+    height: 65px;
+    padding-left: 20px;
+    background-color: #D9D9D9;
+}
+
+.header__sort-pannel {
+    background-color: #E2E2E2;
+}
+
+.container--sort {
+    max-width: 1400px;
+    padding: 0 80px 0 80px;
+    font-size: 30px;
+}
