@@ -23,6 +23,11 @@
     text-decoration: underline;
 }
 
+.header__form {
+    display: flex;
+    padding: 10px;
+}
+
 .header__search {
     font-size: 30px;
     width: 251px;
@@ -30,10 +35,16 @@
     padding: 20px;
     background-color: #D9D9D9;
     border: none;
+    margin: auto 0;
 }
 
 .header__sort-pannel {
+    display: none;
     background-color: #E2E2E2;
+}
+
+.header__sort-pannel.open {
+    display: block;
 }
 
 .container--sort {

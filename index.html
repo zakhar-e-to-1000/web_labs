@@ -19,25 +19,26 @@
 <body>
     <header class="header">
         <div class="container container--header">
-            <buttton id="header__create" class="header__create">Create new recipe</buttton>
+            <buttton id="header__create" class="header__create">Create new film</buttton>
             <h1 class="header__title">Film list</h1>
-            <form action="javascript:void(0)">
-                <input id="header__search" class="header__search" placeholder="search bar" type="text">
-            </form>
         </div>
+        <section id="header__sort-pannel" class="header__sort-pannel open">
+            <div class="container container--sort">
+                <form class="header__form" action="javascript:void(0)">
+                    <input id="header__search" class="header__search" placeholder="search bar" type="text">
+                </form>
+                <button id="header__sort" class="header__sort">Sorted</button>
+
+            </div>
+        </section>
     </header>
-    <section class="header__sort-pannel">
-        <div class="container container--sort">
-            <button id="header__sort" class="header__sort">Sorted</button>
-        </div>
-    </section>
     <main class="main">
         <div class="container container--main">
-            <div id="view" class="view">
-                <h2 class="view__title">Films:</h2>
+            <div id="view" class="view open">
+                <h2 id="view__title" class="view__title">Films:</h2>
                 <div class="film-grid" id="film-grid"></div>
             </div>
-            <div id="create" class="create open">
+            <div id="create" class="create">
                 <button id="create__go-back" class="create__go-back">&lt- Go back</button>
                 <form action="" class="create__form">
                     <h2 class="create__title">Create film entry</h2>
@@ -60,6 +61,7 @@
                     <input class="edit__input" id="edit__duration" type="number" placeholder="Enter duration">
                     <label class="edit__label" for="edit__reviews">Film IMDB reviews count</label>
                     <input class="edit__input" id="edit__reviews" type="number" placeholder="Enter review count">
+                    <input class="edit__input" id="edit__id" type="hidden">
                     <button id="edit__edit" class="edit__edit" type="button">Edit</button>
                 </form>
             </div>

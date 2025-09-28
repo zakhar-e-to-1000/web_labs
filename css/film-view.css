@@ -33,3 +33,9 @@
     font-size: 20px;
     margin-top: auto;
 }
+
+.card__close:hover {
+    background-color: red;
+    color: white;
+    border-color: transparent;
+}
