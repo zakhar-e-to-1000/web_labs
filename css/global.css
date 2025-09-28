@@ -4,8 +4,17 @@
     padding: 0 40px 0 40px;
 }
 
+label {
+    display: block;
+}
+
+input {
+    display: block;
+}
+
 button {
     cursor: pointer;
+    display: block;
 }
 
 body {

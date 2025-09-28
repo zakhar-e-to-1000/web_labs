@@ -3,9 +3,9 @@
     padding: 70px;
 }
 
-.film-view,
-.film-edit,
-.film-create {
+.view,
+.edit,
+.create {
     display: none;
 }
 

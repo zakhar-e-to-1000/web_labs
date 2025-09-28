@@ -1,4 +1,4 @@
-.film-view__title__title {
+.view__title {
     font-weight: 600;
     font-size: 32px;
     margin: 0;
@@ -12,6 +12,7 @@
 }
 
 .card {
+    cursor: pointer;
     padding: 15px;
     width: 290px;
     height: 248px;

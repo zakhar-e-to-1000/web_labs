@@ -10,34 +10,67 @@
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <!-- uuid -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.2.0/uuid.min.js"></script>
+
     <title>Document</title>
 </head>
 
 <body>
     <header class="header">
         <div class="container container--header">
-            <buttton class="header__create">Create new recipe</buttton>
+            <buttton id="header__create" class="header__create">Create new recipe</buttton>
             <h1 class="header__title">Film list</h1>
-            <form>
-                <input class="header__search" placeholder="search bar" type="text">
+            <form action="javascript:void(0)">
+                <input id="header__search" class="header__search" placeholder="search bar" type="text">
             </form>
         </div>
     </header>
     <section class="header__sort-pannel">
         <div class="container container--sort">
-            <button class="header__sort">Sorted</button>
+            <button id="header__sort" class="header__sort">Sorted</button>
         </div>
     </section>
     <main class="main">
         <div class="container container--main">
-            <div class="film-view">
-                <h2 class="film-view__title">Films:</h2>
+            <div id="view" class="view">
+                <h2 class="view__title">Films:</h2>
                 <div class="film-grid" id="film-grid"></div>
             </div>
-            <div class="film-create open"></div>
-            <div class="film-edit"></div>
+            <div id="create" class="create open">
+                <button id="create__go-back" class="create__go-back">&lt- Go back</button>
+                <form action="" class="create__form">
+                    <h2 class="create__title">Create film entry</h2>
+                    <label class="create__label" for="create__name">Film title*</label>
+                    <input class="create__input" id="create__name" type="text" placeholder="Enter title" required>
+                    <label class="create__label" for="create__duration">Film duration (min)</label>
+                    <input class="create__input" id="create__duration" type="number" placeholder="Enter duration">
+                    <label class="create__label" for="create__reviews">Film IMDB reviews count</label>
+                    <input class="create__input" id="create__reviews" type="number" placeholder="Enter review count">
+                    <button type="button" id="create__create" class="create__create">Create</button>
+                </form>
+            </div>
+            <div id="edit" class="edit">
+                <button id="edit__go-back" class="edit__go-back">&lt- Go back</button>
+                <form action="" class="edit__form">
+                    <h2 class="create__title">Edit film entry</h2>
+                    <label class="edit__label" for="edit__name">Film title*</label>
+                    <input class="edit__input" id="edit__name" type="text" placeholder="Enter title" required>
+                    <label class="edit__label" for="edit__duration">Film duration (min)</label>
+                    <input class="edit__input" id="edit__duration" type="number" placeholder="Enter duration">
+                    <label class="edit__label" for="edit__reviews">Film IMDB reviews count</label>
+                    <input class="edit__input" id="edit__reviews" type="number" placeholder="Enter review count">
+                    <button id="edit__edit" class="edit__edit" type="button">Edit</button>
+                </form>
+            </div>
         </div>
     </main>
+    <div id="dialog" class="dialog">
+        <div class="dialog__box">
+            <p class="dialog__message">Wrong input</p>
+            <button id="dialog__close" class="dialog__close">close</button>
+        </div>
+    </div>
     <script type="module" src="js/index.js"></script>
 </body>
 <!-- 235px -->
