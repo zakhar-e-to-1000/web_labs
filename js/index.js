@@ -33,8 +33,7 @@ header_create.addEventListener('click', () => {
     clearCreateInputs();
 })
 
-header__sort.addEventListener('click', () => {
-    header__sort.classList.toggle('checked');
+header__sort.addEventListener('change', () => {
     updateFilmView();
 })
 
@@ -48,7 +47,7 @@ header__search.addEventListener("keyup", (e) => {
 create_button.addEventListener('click', () => {
     const input = getCreateInputs()
     clearCreateInputs();
-    if (input.name == "") {
+    if (input.name == "" || input.duration < 0 || input.reviews < 0) {
         openDialog();
         return;
     }
@@ -61,6 +60,10 @@ create_button.addEventListener('click', () => {
 
 edit_button.addEventListener('click', () => {
     const input = getEditInputs();
+    if (input.name == "" || input.duration < 0 || input.reviews < 0) {
+        openDialog();
+        return;
+    }
     filmList.forEach((value, index, arr) => {
         if (value.id == input.id) {
             arr[index] = input;
@@ -70,22 +73,47 @@ edit_button.addEventListener('click', () => {
     goBack();
 })
 
+
+function getSort(value) {
+    switch (value) {
+        case "0":
+            return (a, b) => {
+                if (a.name > b.name) {
+                    return 1
+                } else if (a.name < b.name) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            }
+        case '1':
+            return (a, b) => { return (b.duration) - (a.duration); }
+        case '2':
+            return (a, b) => { return (b.reviews) - (a.reviews); }
+        default:
+            return null
+    }
+}
+
 function updateFilmView() {
-    const prefix = header__search.value;
+    console.log('hello')
+    const prefix = header__search.value.trim().toLocaleLowerCase();
     const label = document.getElementById("view__title");
     if (prefix === "") {
         label.innerText = 'Films';
     } else {
         label.innerText = `Search: "${prefix}"`
     }
-    const sort_cond = header__sort.classList.contains('checked')
     const searchResult = filmList.filter((value) => {
         return value.name.startsWith(prefix)
     })
-    if (sort_cond) {
-        searchResult.sort((a, b) => (a.duration || Infinity) - (b.duration || Infinity));
+    const sort_func = getSort(header__sort.value);
+    if (sort_func != null) {
+        searchResult.sort(sort_func);
     }
     renderList(searchResult, onEdit, onDelete);
+    const c = document.getElementById("view_count");
+    c.innerText = `Count: ${searchResult.length}`
 }
 
 function onEdit(card_id) {
@@ -101,7 +129,7 @@ function onDelete(card_id) {
     console.log("delete");
     for (let index in filmList) {
         if (filmList[index].id === card_id) {
-            filmList.splice(index);
+            filmList.splice(index, 1);
             updateFilmView();
             return;
         }

@@ -55,11 +55,15 @@ export function clearCreateInputs() {
     create__reviews.value = '';
 }
 
+function sanityzeNum(num) {
+    return (num || 0)
+}
+
 export function getCreateInputs() {
     return {
         name: create__name.value,
-        duration: create__duration.valueAsNumber,
-        reviews: create__reviews.valueAsNumber
+        duration: sanityzeNum(create__duration.valueAsNumber),
+        reviews: sanityzeNum(create__reviews.valueAsNumber)
     }
 }
 
@@ -67,8 +71,8 @@ export function getEditInputs() {
     return {
         id: edit__id.value,
         name: edit__name.value,
-        duration: edit__duration.valueAsNumber,
-        reviews: edit__reviews.valueAsNumber
+        duration: sanityzeNum(edit__duration.valueAsNumber),
+        reviews: sanityzeNum(edit__reviews.valueAsNumber)
     }
 }
 

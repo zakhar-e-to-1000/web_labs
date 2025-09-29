@@ -62,8 +62,3 @@
     padding: 0;
     margin: 0;
 }
-
-.header__sort.checked {
-    background-color: black;
-    color: #E2E2E2;
-}

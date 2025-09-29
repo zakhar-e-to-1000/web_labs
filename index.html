@@ -27,7 +27,12 @@
                 <form class="header__form" action="javascript:void(0)">
                     <input id="header__search" class="header__search" placeholder="search bar" type="text">
                 </form>
-                <button id="header__sort" class="header__sort">Sorted</button>
+                <select id="header__sort" class="header__sort">
+                    <option value="">None</option>
+                    <option value="0">Name</option>
+                    <option value="1">Duration</option>
+                    <option value="2">Reviews</option>
+                </select>
 
             </div>
         </section>
@@ -37,6 +42,7 @@
             <div id="view" class="view open">
                 <h2 id="view__title" class="view__title">Films:</h2>
                 <div class="film-grid" id="film-grid"></div>
+                <p id="view_count">Count: 0</p>
             </div>
             <div id="create" class="create">
                 <button id="create__go-back" class="create__go-back">&lt- Go back</button>
@@ -45,9 +51,11 @@
                     <label class="create__label" for="create__name">Film title*</label>
                     <input class="create__input" id="create__name" type="text" placeholder="Enter title" required>
                     <label class="create__label" for="create__duration">Film duration (min)</label>
-                    <input class="create__input" id="create__duration" type="number" placeholder="Enter duration">
+                    <input class="create__input" id="create__duration" type="number" placeholder="Enter duration"
+                        min="0">
                     <label class="create__label" for="create__reviews">Film IMDB reviews count</label>
-                    <input class="create__input" id="create__reviews" type="number" placeholder="Enter review count">
+                    <input class="create__input" id="create__reviews" type="number" placeholder="Enter review count"
+                        min="0">
                     <button type="button" id="create__create" class="create__create">Create</button>
                 </form>
             </div>
@@ -58,9 +66,10 @@
                     <label class="edit__label" for="edit__name">Film title*</label>
                     <input class="edit__input" id="edit__name" type="text" placeholder="Enter title" required>
                     <label class="edit__label" for="edit__duration">Film duration (min)</label>
-                    <input class="edit__input" id="edit__duration" type="number" placeholder="Enter duration">
+                    <input class="edit__input" id="edit__duration" type="number" placeholder="Enter duration" min="0">
                     <label class="edit__label" for="edit__reviews">Film IMDB reviews count</label>
-                    <input class="edit__input" id="edit__reviews" type="number" placeholder="Enter review count">
+                    <input class="edit__input" id="edit__reviews" type="number" placeholder="Enter review count"
+                        min="0">
                     <input class="edit__input" id="edit__id" type="hidden">
                     <button id="edit__edit" class="edit__edit" type="button">Edit</button>
                 </form>
