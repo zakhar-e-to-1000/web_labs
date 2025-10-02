@@ -26,7 +26,6 @@ const sort__pannel = document.getElementById("header__sort-pannel");
 
 
 export function goCreate() {
-    header__search.value = ''
     view.classList.remove("open");
     edit.classList.remove("open");
     create.classList.add("open");
@@ -42,7 +41,6 @@ export function goBack() {
 }
 
 export function goEdit() {
-    header__search.value = ''
     create.classList.remove("open");
     view.classList.remove("open");
     sort__pannel.classList.remove("open");

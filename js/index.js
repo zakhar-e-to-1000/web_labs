@@ -53,7 +53,7 @@ create_button.addEventListener('click', () => {
     }
     const film_obj = getFilmObj(input)
     filmList.unshift(film_obj)
-
+    header__search.value = ''
     updateFilmView();
     goBack();
 })
@@ -69,6 +69,7 @@ edit_button.addEventListener('click', () => {
             arr[index] = input;
         }
     });
+    header__search.value = ''
     updateFilmView();
     goBack();
 })
