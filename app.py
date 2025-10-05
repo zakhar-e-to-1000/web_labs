@@ -1,8 +1,8 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, url_for, send_file
 
-app = Flask(__name__, static_url_path="/")
+app = Flask(__name__, static_url_path="/", static_folder='frontend')
 
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return send_file('frontend/index.html')
