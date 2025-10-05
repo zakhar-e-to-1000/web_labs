@@ -5,6 +5,7 @@ import {
     clearCreateInputs, renderList, fillEditInputs
 } from "./dom-utils.js"
 import { openDialog } from "./dialog-setup.js"
+import { deleteFilm, getAllFilms, postNewFilm, updateFilm } from "./api.js"
 
 const list = []
 const template = {
@@ -12,7 +13,6 @@ const template = {
     duration: 61,
     reviews: 60000
 }
-
 const filmList = [];
 
 const header_create = document.getElementById("header__create")
@@ -44,35 +44,31 @@ header__search.addEventListener("keyup", (e) => {
     updateFilmView()
 })
 
-create_button.addEventListener('click', () => {
+create_button.addEventListener('click', async () => {
     const input = getCreateInputs()
     clearCreateInputs();
     if (input.name == "" || input.duration < 0 || input.reviews < 0) {
         openDialog();
         return;
     }
-    const film_obj = getFilmObj(input)
-    filmList.unshift(film_obj)
-    header__search.value = ''
-    updateFilmView();
+    await postNewFilm(input);
+    await updateFilmView();
     goBack();
 })
 
-edit_button.addEventListener('click', () => {
+edit_button.addEventListener('click', async () => {
     const input = getEditInputs();
     if (input.name == "" || input.duration < 0 || input.reviews < 0) {
         openDialog();
         return;
     }
-    filmList.forEach((value, index, arr) => {
-        if (value.id == input.id) {
-            arr[index] = input;
-        }
-    });
+    await updateFilm(input)
     header__search.value = ''
-    updateFilmView();
+    await updateFilmView();
     goBack();
 })
+
+updateFilmView()
 
 
 function getSort(value) {
@@ -96,7 +92,7 @@ function getSort(value) {
     }
 }
 
-function updateFilmView() {
+async function updateFilmView() {
     console.log('hello')
     const prefix = header__search.value.trim().toLocaleLowerCase();
     const label = document.getElementById("view__title");
@@ -105,7 +101,9 @@ function updateFilmView() {
     } else {
         label.innerText = `Search: "${prefix}"`
     }
-    const searchResult = filmList.filter((value) => {
+    const list = await getAllFilms()
+    console.log(list)
+    const searchResult = list.filter((value) => {
         return value.name.startsWith(prefix)
     })
     const sort_func = getSort(header__sort.value);
@@ -118,7 +116,7 @@ function updateFilmView() {
 }
 
 function onEdit(card_id) {
-    const card = checkFilm(card_id);
+    const card = document.getElementById(card_id)
     if (card === null) {
         return
     }
@@ -126,22 +124,8 @@ function onEdit(card_id) {
     goEdit()
 }
 
-function onDelete(card_id) {
-    console.log("delete");
-    for (let index in filmList) {
-        if (filmList[index].id === card_id) {
-            filmList.splice(index, 1);
-            updateFilmView();
-            return;
-        }
-    }
-}
-
-function checkFilm(card_id) {
-    for (let film of filmList) {
-        if (film.id === card_id) {
-            return film;
-        }
-    }
-    return null
+async function onDelete(card_id) {
+    console.log('delete', await deleteFilm(card_id));
+    await updateFilmView();
+    console.log("delete", card_id);
 }

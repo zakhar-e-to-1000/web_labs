@@ -74,11 +74,14 @@ export function getEditInputs() {
     }
 }
 
-export function fillEditInputs(film_obj) {
-    edit__id.value = film_obj.id;
-    edit__name.value = film_obj.name;
-    edit__duration.value = film_obj.duration;
-    edit__reviews.value = film_obj.reviews;
+export function fillEditInputs(card_el) {
+    const card__title = card_el.querySelector('.card__title')
+    const card__duration = card_el.querySelector('.card__duration')
+    const card__reviews = card_el.querySelector('.card__review')
+    edit__id.value = card_el.id;
+    edit__name.value = card__title.innerText;
+    edit__duration.value = card__duration.innerText.split(' ')[0];
+    edit__reviews.value = card__reviews.innerText.split(' ')[0];
 }
 
 export function getFilmObj({ name, duration, reviews }) {
