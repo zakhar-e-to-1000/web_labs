@@ -101,18 +101,18 @@ async function updateFilmView() {
     } else {
         label.innerText = `Search: "${prefix}"`
     }
-    const list = await getAllFilms()
+    const list = await getAllFilms({ SearchPreffix: prefix, sort: header__sort.value })
     console.log(list)
-    const searchResult = list.filter((value) => {
-        return value.name.startsWith(prefix)
-    })
-    const sort_func = getSort(header__sort.value);
-    if (sort_func != null) {
-        searchResult.sort(sort_func);
-    }
-    renderList(searchResult, onEdit, onDelete);
+    // const searchResult = list.filter((value) => {
+    //     return value.name.startsWith(prefix)
+    // })
+    // const sort_func = getSort(header__sort.value);
+    // if (sort_func != null) {
+    //     searchResult.sort(sort_func);
+    // }
+    renderList(list, onEdit, onDelete);
     const c = document.getElementById("view_count");
-    c.innerText = `Count: ${searchResult.length}`
+    c.innerText = `Count: ${list.length}`
 }
 
 function onEdit(card_id) {

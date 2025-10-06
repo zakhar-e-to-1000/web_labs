@@ -57,12 +57,19 @@ def index():
 
 @app.route('/film', methods=['GET'])
 def films_get():
+    preffix = request.args.get('s', '', str)
+    sort_param = request.args.get('sort', 'none', str)
+    # app.logger.info(str(preffix)+' '+str(sort_param))
     con = sqlite3.connect('database.db')
     con.row_factory = dict_factory
     cur = con.cursor()
     films = db_select_all(cur)
+    res = filter(lambda e: e['name'].lower().startswith(
+        preffix.strip().lower()), films)
     con.close()
-    return films
+    if sort_param != 'none':
+        res = list(sorted(res, key=lambda e: e[sort_param]))
+    return list(res)
 
 
 @app.route('/film', methods=['POST'])
@@ -87,7 +94,7 @@ def film_delete(film_id):
     return ('ok', 200)
 
 
-@app.route('/film/<int:film_id>', methods=['UPDATE'])
+@app.route('/film/<int:film_id>', methods=['PUT'])
 def film_update(film_id):
     film_params = request.json
     if film_params != None:
