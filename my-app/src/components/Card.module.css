@@ -1,0 +1,28 @@
+.card {
+    cursor: pointer;
+    padding: 15px;
+    width: 290px;
+    height: 248px;
+    background-color: #F2F2F2;
+    font-size: 24px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    row-gap: 5px;
+}
+
+.card__title {
+    font-weight: bold;
+}
+
+.card__review {
+    font-size: 20px;
+    margin-top: auto;
+}
+
+.card__buy:hover {
+    background-color: red;
+    color: white;
+    border-color: transparent;
+}

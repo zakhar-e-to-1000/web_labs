@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import './reset.css'
 import './App.css'
-import Footer from './Footer'
-import Header from './Header'
-import Home from './Home'
+
+import Footer from './containers/Footer'
+import Header from './containers/Header'
+import Home from './containers/Home'
 function App() {
   return (
     <>
