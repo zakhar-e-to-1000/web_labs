@@ -21,6 +21,12 @@
     margin-top: auto;
 }
 
+.card__buy {
+    font-size: 24px;
+    border-radius: 4px;
+    border: 1px solid black;
+}
+
 .card__buy:hover {
     background-color: red;
     color: white;

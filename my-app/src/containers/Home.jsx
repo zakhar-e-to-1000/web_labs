@@ -7,8 +7,13 @@ function Home() {
         title={`Film ${num}`} duration={num * 2} reviews={num * 3} />)
     return <main>
         <Container>
-            <h1 className={styles.home__title}>Кіно_тека</h1>
-            <p>Найкраща тека на всій планеті!</p>
+            <div className={styles.home_flex}>
+                <img src="src/assets/vintage-film-roll-stockcake.jpg" />
+                <div>
+                    <h1 className={styles.home__title}>Кіно_тека</h1>
+                    <p>Найкраща тека на всій планеті!</p>
+                </div>
+            </div>
             <ul className={styles.film_view}>{films}</ul>
         </Container>
     </main>

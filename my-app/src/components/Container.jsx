@@ -1,4 +1,4 @@
-import styles from './Сontainer.module.css'
+import styles from './Container.module.css'
 
 function Container({ children, className }) {
     let class_string = styles.container;

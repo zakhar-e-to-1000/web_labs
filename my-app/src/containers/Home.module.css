@@ -9,3 +9,18 @@
     font-size: 48px;
     font-weight: 800;
 }
+
+.home_flex {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.home_flex>img {
+    max-width: 100%;
+    min-width: 0;
+    height: auto;
+    border-radius: 8px;
+    /* flex-basis: 728px; */
+    /* flex-shrink: 2; */
+}
