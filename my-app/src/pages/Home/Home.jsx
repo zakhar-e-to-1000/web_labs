@@ -1,5 +1,5 @@
-import Container from "../components/Container";
-import Card from "../components/Card";
+import Container from "@/components/Container/Container";
+import Card from "@/components/Card/Card";
 import styles from './Home.module.css'
 function Home() {
     const numbers = [1, 2, 3, 4]

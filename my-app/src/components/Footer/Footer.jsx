@@ -4,7 +4,8 @@ import {
 } from "react-icons/ai";
 import { IconContext } from 'react-icons'
 import styles from './Footer.module.css'
-import Container from "../components/Container";
+import Container from "@/components/Container/Container"
+
 export default function Footer() {
     return <footer className={styles.footer}>
         <Container className={styles['сontainer--footer']}>
