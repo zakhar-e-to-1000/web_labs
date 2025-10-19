@@ -10,13 +10,19 @@
     font-weight: 800;
 }
 
-.home_flex {
+.home__subtitle {
+    margin: 16px 0 16px 0;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.home__hero {
     display: flex;
     flex-direction: row;
     gap: 20px;
 }
 
-.home_flex>img {
+.home__hero>img {
     max-width: 100%;
     min-width: 0;
     height: auto;
