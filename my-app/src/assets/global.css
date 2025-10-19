@@ -1,7 +1,19 @@
 @import url("./reset.css");
-@import url("./myreset.css");
+/* @import url("./myreset.css"); */
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 body {
     font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+h1 {
+    font-size: 48px;
+    font-weight: 800;
+    margin: 0.5em 0 0.5em 0;
+}
+
+h2 {
+    font-size: 32px;
+    font-weight: 700;
 }

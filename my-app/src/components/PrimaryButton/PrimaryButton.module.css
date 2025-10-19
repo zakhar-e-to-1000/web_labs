@@ -1,0 +1,7 @@
+.primary-button {
+    padding: 5px 20px 5px 20px;
+    border-radius: 4px;
+    font-size: inherit;
+    border: 1px solid #000000;
+    display: block;
+}

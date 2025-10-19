@@ -1,0 +1,9 @@
+.search-bar {
+    display: block;
+    font-size: inherit;
+    appearance: none;
+    /* outline: none; */
+    padding: 5px 5px 5px 10px;
+    border: 1px solid #000000;
+    border-radius: 0;
+}

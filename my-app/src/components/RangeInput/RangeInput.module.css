@@ -1,0 +1,13 @@
+.input-container {
+    display: flex;
+    justify-content: start;
+}
+
+.input-container>p {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.input-container>input {
+    max-width: 80px;
+}
