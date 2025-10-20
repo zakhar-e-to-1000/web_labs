@@ -7,7 +7,8 @@ import './assets/global.css'
 
 const router = createBrowserRouter([
     { path: "/", element: <Home /> },
-    { path: "/catalog", element: <Catalog /> }
+    { path: "/catalog", element: <Catalog /> },
+    { path: '*', element: <p>Not Found 404</p> }
 
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(

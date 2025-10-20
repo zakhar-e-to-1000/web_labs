@@ -14,7 +14,7 @@ function Home() {
             reviews: 3 * num
         }
     })
-
+    const bo = false;
     return <>
         <Header />
         <main>
@@ -31,6 +31,7 @@ function Home() {
                     <FilmGrid filmList={films} />
                 </section>
             </Container>
+            {bo ? <p>jjjjj</p> : <p>hhh</p>}
         </main>
         <Footer />
     </>
