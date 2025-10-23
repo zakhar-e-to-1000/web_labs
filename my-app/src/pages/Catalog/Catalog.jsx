@@ -9,21 +9,23 @@ import styles from "./Catalog.module.css"
 import { useId } from "react"
 import PrimaryButton from "@/components/PrimaryButton/PrimaryButton"
 import PrimarySearchBar from "@/components/PrimarySearchBar/PrimarySearchBar"
+import { useContext } from "react"
+import { FilmsContext } from "@/context/context"
+
+function getRange(list, attr) {
+    return {
+        min: Math.min(list.map((value) => value[attr])),
+        max: Math.max(list.map((value) => value[attr]))
+    }
+}
+
 function Catalog() {
-    const numbers = [1, 2, 3, 5, 6]
-    const films = numbers.map((num) => {
-        return {
-            title: `Film ${num}`,
-            id: num,
-            duration: 2 * num,
-            reviews: 3 * num
-        }
-    })
     const sortOptions = [
         { value: "", text: 'None' },
         { value: "1", text: "Name" },
         { value: "2", text: "Duration" }
     ]
+    const films = useContext(FilmsContext)
     const selectId = useId();
     return <>
         <Header />

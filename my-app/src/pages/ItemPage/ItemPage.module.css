@@ -1,0 +1,22 @@
+.main {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.main>img {
+    max-width: 100%;
+    min-width: 0;
+    height: auto;
+    border-radius: 8px;
+    /* flex-basis: 728px; */
+    /* flex-shrink: 2; */
+}
+
+.info-pannel {
+    flex-shrink: 0;
+}
+
+.info-pannel p {
+    margin-bottom: 8px;
+}
