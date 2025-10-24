@@ -4,4 +4,10 @@
     font-size: inherit;
     border: 1px solid #000000;
     display: block;
+    cursor: pointer;
+    transition: transform 0.1s ease-out;
+}
+
+.primary-button:active {
+    transform: scale(0.95);
 }

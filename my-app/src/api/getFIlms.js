@@ -11,8 +11,8 @@ export default function getFilms(count) {
         films.push({
             title: `Film ${num}`,
             id: num,
-            duration: 2 * num,
-            reviews: 3 * num,
+            duration: Math.floor(Math.random() * 240),
+            reviews: Math.floor(Math.random() * 10_000),
             description: randomLorem()
         })
     }
