@@ -1,11 +1,11 @@
 import { useId } from "react"
 import styles from './Select.module.css'
-function Select({ options = [], defaultValue = '', id, valueHook }) {
+function Select({ options = [], valueHook, ...props }) {
 
     return <select className={styles["default-select"]}
-        id={id} defaultValue={defaultValue} onChange={
+        onChange={
             (e) => valueHook(e.target.value)
-        } >
+        } {...props} >
         {
             options.map((item) =>
                 <option key={item.value} value={item.value}>

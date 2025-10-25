@@ -8,20 +8,44 @@ import { FilmsContext } from "@/context/context"
 import SearchForm from "@/components/SearchForm/SearchForm"
 function Catalog() {
     const films = useContext(FilmsContext)
+
     function getShowFilms(options) {
-        const { searchPreffix, sortField } = options
+        const { searchPreffix, sortField, sortOrder, valueRanges } = options
         const searchString = searchPreffix.toLowerCase().trim()
-        let ans = films.filter((value) => {
-            return value.title.toLowerCase().startsWith(searchString)
+        let ans = films.filter((film) => {
+            const boo1 = film.title.toLowerCase().startsWith(searchString)
+            if (!boo1) { return false }
+            for (let { key, range } of valueRanges) {
+                const fitMin = !(film[key] < range[0])
+                const fitMax = !(film[key] > range[1])
+                if (!fitMax || !fitMin) {
+                    return false
+                }
+            }
+            return true
         })
         if (sortField != '') {
-            ans.sort((a, b) => a[sortField] - b[sortField])
+            ans.sort((a, b) => {
+                let num = 0;
+                if (a[sortField] > b[sortField]) {
+                    num = 1;
+                } else if (a[sortField] < b[sortField]) {
+                    num = -1;
+                }
+                return num
+            })
+        }
+        if (sortOrder == 'des') {
+            ans.reverse()
         }
         return ans;
     }
+
     const [ShowOptions, SetShowOptions] = useState({
         searchPreffix: '',
-        sortField: ''
+        sortField: '',
+        sortOrder: '',
+        valueRanges: []
     })
     return <>
         <Header />

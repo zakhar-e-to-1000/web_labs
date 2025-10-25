@@ -23,7 +23,7 @@ const router = createBrowserRouter([
 //         reviews: 3 * num
 //     }
 // })
-const films = getFilms(10)
+const films = getFilms(100)
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(

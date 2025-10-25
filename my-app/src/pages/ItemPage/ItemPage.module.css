@@ -5,10 +5,12 @@
 }
 
 .main>img {
-    max-width: 100%;
     min-width: 0;
-    height: auto;
     border-radius: 8px;
+    height: 300px;
+    width: 300px;
+    object-fit: cover;
+    object-position: center;
     /* flex-basis: 728px; */
     /* flex-shrink: 2; */
 }
@@ -19,4 +21,8 @@
 
 .info-pannel p {
     margin-bottom: 8px;
+}
+
+.v_main {
+    min-height: 100vh;
 }

@@ -25,18 +25,20 @@ function ItemPage() {
     return <>
         <Header />
         <Container>
+            <div className={styles.v_main}>
 
-            <div className={styles.main}>
-                <img src="/src/assets/vintage-film-roll-stockcake.jpg" />
-                <section class={styles['info-pannel']}>
-                    <h1>{res.title}</h1>
-                    <h2>Stats</h2>
-                    <p>Duration: {res.duration}</p>
-                    <p>Reviews: {res.reviews}</p>
-                </section>
+                <div className={styles.main}>
+                    <img src="/src/assets/vintage-film-roll-stockcake.jpg" />
+                    <section class={styles['info-pannel']}>
+                        <h1>{res.title}</h1>
+                        <h2>Stats</h2>
+                        <p>Duration: {res.duration}</p>
+                        <p>Reviews: {res.reviews}</p>
+                    </section>
+                </div>
+                <h2>Description</h2>
+                <p>{res.description}</p>
             </div>
-            <h2>Description</h2>
-            <p>{res.description}</p>
         </Container>
         <Footer />
     </>
