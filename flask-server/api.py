@@ -2,6 +2,7 @@ from flask_cors import CORS
 from flask import Flask, url_for, send_file, request
 import sqlite3
 from time import sleep
+from werkzeug.datastructures import MultiDict
 app = Flask(__name__)
 DATABASE_PATH = 'database.db'
 CORS(app)
@@ -66,6 +67,31 @@ def db_put(cur: sqlite3.Cursor, params):
 ''', params)
 
 
+def filter_films(films: list[dict], url_params: MultiDict[str, str]):
+    s_preffix = url_params.get('searchPreffix', '', type=str).strip().lower()
+    durationMin = url_params.get('durationMin', float('nan'), type=int)
+    durationMax = url_params.get('durationMax', float('nan'), type=int)
+    reviewsMin = url_params.get('reviewsMin', float('nan'), type=int)
+    reviewsMax = url_params.get('reviewsMax', float('nan'), type=int)
+
+    def filter_func(val):
+        if not val['title'].lower().startswith(s_preffix):
+            return False
+        if val['duration'] < durationMin or val['duration'] > durationMax:
+            return False
+        if val['reviews'] < reviewsMin or val['reviews'] > reviewsMax:
+            return False
+        return True
+    return list(filter(filter_func, films))
+
+
+def sort_films(films: list, url_params: MultiDict[str, str]):
+    sortField = url_params.get('sortField', '', type=str)
+    sortOrder = url_params.get('sortOrder', '', type=str)
+    if sortField != '':
+        films.sort(key=lambda e: e[sortField], reverse=(sortOrder == 'des'))
+
+
 @app.route('/')
 def index():
     return "<h1>Hello there</h1>"
@@ -74,19 +100,15 @@ def index():
 @app.route('/api/films', methods=['GET'])
 def films_get():
     sleep(0)
-    preffix = request.args.get('s', '', str)
-    sort_param = request.args.get('sort', 'none', str)
-    # app.logger.info(str(preffix)+' '+str(sort_param))
     con = sqlite3.connect(DATABASE_PATH)
     con.row_factory = dict_factory
     cur = con.cursor()
     films = db_select_all(cur)
-    res = filter(lambda e: e['title'].lower().startswith(
-        preffix.strip().lower()), films)
     con.close()
-    if sort_param != 'none':
-        res = list(sorted(res, key=lambda e: e[sort_param]))
-    return list(res)
+    request.args
+    res = filter_films(films, request.args)
+    sort_films(res, request.args)
+    return res
 
 
 @app.route('/api/films', methods=['POST'])  # type: ignore
@@ -131,38 +153,6 @@ def film_update(film_id):
     con.commit()
     con.close()
     return ('ok', 200)
-
-    # function getShowFilms(options) {
-    #     const {searchPreffix, sortField, sortOrder, valueRanges} = options
-    #     const searchString = searchPreffix.toLowerCase().trim()
-    #     let ans = films.filter((film)= > {
-    #         const boo1 = film.title.toLowerCase().startsWith(searchString)
-    #         if (!boo1) {return false}
-    #         for (let {key, range} of valueRanges) {
-    #             const fitMin = !(film[key] < range[0])
-    #             const fitMax = !(film[key] > range[1])
-    #             if (!fitMax | | !fitMin) {
-    #                 return false
-    #             }
-    #         }
-    #         return true
-    #     })
-    #     if (sortField != '') {
-    #         ans.sort((a, b)= > {
-    #             let num= 0
-    #             if (a[sortField] > b[sortField]) {
-    #                 num= 1
-    #             } else if (a[sortField] < b[sortField]) {
-    #                 num= -1
-    #             }
-    #             return num
-    #         })
-    #     }
-    #     if (sortOrder == 'des') {
-    #         ans.reverse()
-    #     }
-    #     return ans
-    # }
 
 
 if __name__ == '__main__':
