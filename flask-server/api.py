@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Resource, Api, reqparse, fields, marshal_with, abort
-
+from sqlalchemy import select
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 db = SQLAlchemy(app)
@@ -38,7 +38,9 @@ userFields = {
 class Films(Resource):
     @marshal_with(userFields)
     def get(self):
-        films = FilmModel.query.all()
+        # films = db.select(FilmModel)
+        films = db.session.scalars(db.select(FilmModel)).all()
+        # films = FilmModel.query.all()
         return films
 
     @marshal_with(userFields)
@@ -49,11 +51,22 @@ class Films(Resource):
             reviews=args['reviews'], description=args['description'])
         db.session.add(film)
         db.session.commit()
-        films = FilmModel.query.all()
-        return films
+        return film
 
 
-api.add_resource(Films, '/api/films/')
+class FilmItem(Resource):
+    @marshal_with(userFields)
+    def get(self, id):
+        film = db.session.scalar(
+            db.select(FilmModel).where(FilmModel.id == id))
+        return film
+
+    @marshal_with(userFields)
+    def put(self, id):
+
+
+api.add_resource(Films, '/api/films')
+api.add_resource(FilmItem, '/api/films/<int:id>')
 
 
 @app.route('/')
