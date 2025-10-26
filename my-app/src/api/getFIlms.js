@@ -12,6 +12,9 @@ function get_params(options) {
     //     durationRange: [NaN, NaN],
     //     reviewsRange: [NaN, NaN],
     // }
+    if (options === undefined) {
+        return undefined
+    }
     const { searchPreffix, sortField, sortOrder, durationRange, reviewsRange } = options
     const params = {
         searchPreffix: searchPreffix || undefined,

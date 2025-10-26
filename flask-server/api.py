@@ -125,10 +125,13 @@ def films_post():
 
 @app.route('/api/films/<int:film_id>', methods=['GET'])  # type: ignore
 def film_get(film_id):
+    sleep(0)
     con = sqlite3.connect(DATABASE_PATH)
     con.row_factory = dict_factory
     cur = con.cursor()
     res = db_select(cur, film_id)
+    if (res == None):
+        return {'message': 'No film with such id'}, 404
     return res, 200
 
 

@@ -11,7 +11,7 @@ function Home() {
     const [films, setFilms] = useState([])
     useEffect(() => {
         get_films({ setShowList: setFilms })
-    })
+    }, [])
     const [viewLength, setViewLength] = useState(3);
     return <>
         <Header />

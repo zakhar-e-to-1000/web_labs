@@ -6,6 +6,7 @@ import styles from "./Catalog.module.css"
 import { useContext, useEffect, useState } from "react"
 import get_films from "../../api/getFIlms"
 import SearchForm from "@/components/SearchForm/SearchForm"
+import LoaderWheel from "../../components/LoaderWheel/LoaderWheel"
 import axios from 'axios'
 
 function Catalog() {
@@ -33,7 +34,7 @@ function Catalog() {
             <Container>
                 <h1>Каталог товарів</h1>
                 <SearchForm optionsHook={SetShowOptions} />
-                {loading && <h1>...Loading</h1>}
+                {loading && < LoaderWheel />}
                 <FilmGrid filmList={showList} />
             </Container>
         </main>
