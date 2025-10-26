@@ -1,7 +1,10 @@
+from flask_cors import CORS
 from flask import Flask, url_for, send_file, request
 import sqlite3
-app = Flask(__name__, static_url_path="/", static_folder='frontend')
+from time import sleep
+app = Flask(__name__)
 DATABASE_PATH = 'database.db'
+CORS(app)
 
 
 def dict_factory(cursor, row):
@@ -65,11 +68,12 @@ def db_put(cur: sqlite3.Cursor, params):
 
 @app.route('/')
 def index():
-    return send_file('frontend/index.html')
+    return "<h1>Hello there</h1>"
 
 
 @app.route('/api/films', methods=['GET'])
 def films_get():
+    sleep(0)
     preffix = request.args.get('s', '', str)
     sort_param = request.args.get('sort', 'none', str)
     # app.logger.info(str(preffix)+' '+str(sort_param))
@@ -127,6 +131,38 @@ def film_update(film_id):
     con.commit()
     con.close()
     return ('ok', 200)
+
+    # function getShowFilms(options) {
+    #     const {searchPreffix, sortField, sortOrder, valueRanges} = options
+    #     const searchString = searchPreffix.toLowerCase().trim()
+    #     let ans = films.filter((film)= > {
+    #         const boo1 = film.title.toLowerCase().startsWith(searchString)
+    #         if (!boo1) {return false}
+    #         for (let {key, range} of valueRanges) {
+    #             const fitMin = !(film[key] < range[0])
+    #             const fitMax = !(film[key] > range[1])
+    #             if (!fitMax | | !fitMin) {
+    #                 return false
+    #             }
+    #         }
+    #         return true
+    #     })
+    #     if (sortField != '') {
+    #         ans.sort((a, b)= > {
+    #             let num= 0
+    #             if (a[sortField] > b[sortField]) {
+    #                 num= 1
+    #             } else if (a[sortField] < b[sortField]) {
+    #                 num= -1
+    #             }
+    #             return num
+    #         })
+    #     }
+    #     if (sortOrder == 'des') {
+    #         ans.reverse()
+    #     }
+    #     return ans
+    # }
 
 
 if __name__ == '__main__':

@@ -20,7 +20,7 @@ function SearchForm({ optionsHook }) {
         { value: "reviews", text: "Reviews" }
     ]
     const sortSubOprions = [
-        { value: 'acs', text: 'acs' },
+        { value: '', text: 'acs' },
         { value: 'des', text: 'des' }]
     const submit = (options) => {
         if (options.searchPreffix === undefined) {
@@ -28,10 +28,8 @@ function SearchForm({ optionsHook }) {
                 searchPreffix: searchPreffix,
                 sortField: sortField,
                 sortOrder: sortOrder,
-                valueRanges: [
-                    { key: "duration", range: durationRange },
-                    { key: 'reviews', range: reviewsRange },
-                ]
+                durationRange: durationRange,
+                reviewsRange: reviewsRange
             }
         }
         optionsHook(options)
@@ -47,7 +45,8 @@ function SearchForm({ optionsHook }) {
             searchPreffix: '',
             sortField: '',
             sortOrder: '',
-            valueRanges: []
+            durationRange: [NaN, NaN],
+            reviewsRange: [NaN, NaN],
         }
         submit(options)
     }

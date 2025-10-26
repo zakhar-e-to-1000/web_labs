@@ -5,9 +5,13 @@ import { FilmsContext } from '@/context/context'
 import Header from '@/components/Header/Header'
 import Footer from '@/components/Footer/Footer'
 import FilmGrid from '@/components/FilmGrid/FilmGrid'
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import get_films from "../../api/getFIlms";
 function Home() {
-    const films = useContext(FilmsContext)
+    const [films, setFilms] = useState([])
+    useEffect(() => {
+        get_films({ setShowList: setFilms })
+    })
     const [viewLength, setViewLength] = useState(3);
     return <>
         <Header />

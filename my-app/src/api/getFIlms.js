@@ -1,20 +1,55 @@
+import axios from 'axios'
 
-function randomLorem() {
-    const lorem = "Curabitur ac magna ut enim elementum mattis. Integer sit amet metus nec urna lacinia rhoncus sed quis odio. Cras nisi dui, vulputate tincidunt convallis at, aliquet non turpis. Donec tincidunt velit eu nisi interdum, eget pharetra erat tempor. Vivamus lobortis nunc non nibh congue, non iaculis erat dapibus. Aenean mattis, lorem nec dictum aliquam, urna quam tempus metus, nec efficitur tortor tortor ut felis. Cras eu tristique diam, semper convallis libero. Vivamus id ante lectus. Morbi pulvinar eros hendrerit sapien dignissim facilisis. Praesent vitae justo ac arcu consequat volutpat nec sit amet magna. Phasellus dignissim egestas augue quis lobortis. Mauris in viverra sem. Vestibulum eu suscipit neque. Duis non est lorem. Duis mattis tortor sit amet volutpat vehicula. Duis dolor massa, auctor non molestie ac, convallis quis risus. "
-    let rand = Math.floor(Math.random() / 2 * lorem.length)
-    return lorem.slice(rand)
-}
+const BASE_URL = 'http://localhost:5000/api'
 
-export default function getFilms(count) {
-    const films = []
-    for (let num = 1; num < count + 1; num++) {
-        films.push({
-            title: `Film ${num}`,
-            id: num,
-            duration: Math.floor(Math.random() * 240),
-            reviews: Math.floor(Math.random() * 10_000),
-            description: randomLorem()
-        })
+
+function get_params(options) {
+    // const def =
+    // {
+    //     searchPreffix: '',
+    //     sortField: '',
+    //     sortOrder: '',
+    //     durationRange: [NaN, NaN],
+    //     reviewsRange: [NaN, NaN],
+    // }
+    const { searchPreffix, sortField, sortOrder, durationRange, reviewsRange } = options
+    const params = {
+        searchPreffix: searchPreffix || undefined,
+        sortField: sortField || undefined,
+        sortOrder: sortOrder || undefined
     }
-    return films
+    const [durationMin, durationMax] = durationRange
+    if (!Number.isNaN(durationMin)) {
+        params.durationMin = durationMin
+    }
+    if (!Number.isNaN(durationMax)) {
+        params.durationMax = durationMax
+    }
+    const [reviewsMin, reviewsMax] = reviewsRange
+    if (!Number.isNaN(reviewsMin)) {
+        params.reviewsMin = reviewsMin
+    }
+    if (!Number.isNaN(reviewsMax)) {
+        params.reviewsMax = reviewsMax
+    }
+    return params
 }
+
+async function get_films({ options, setLoading = () => { },
+    setError = () => { }, setShowList = () => { } }) {
+    setLoading(true)
+    try {
+        const res = await axios.get(BASE_URL + '/films', {
+            params: get_params(options)
+        })
+        setShowList(res.data)
+        setLoading(false)
+    } catch (err) {
+        setError(err)
+        setLoading(false)
+        console.log(err)
+    }
+
+}
+
+export default get_films

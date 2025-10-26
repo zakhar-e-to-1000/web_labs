@@ -23,14 +23,11 @@ const router = createBrowserRouter([
 //         reviews: 3 * num
 //     }
 // })
-const films = getFilms(100)
+// const films = getFilms(100)
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <StrictMode>
-        <FilmsContext value={films}>
-
-            <RouterProvider router={router} />
-        </FilmsContext>
+        <RouterProvider router={router} />
     </StrictMode>,
 )
