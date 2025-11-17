@@ -7,10 +7,16 @@ import Footer from '@/components/Footer/Footer'
 import FilmGrid from '@/components/FilmGrid/FilmGrid'
 import { useContext, useEffect, useState } from "react";
 import get_films from "../../api/getFIlms";
+import LoaderWheel from "@/components/LoaderWheel/LoaderWheel"
+
 function Home() {
+    const [loading, setLoading] = useState(true)
     const [films, setFilms] = useState([])
     useEffect(() => {
-        get_films({ setShowList: setFilms })
+        get_films({
+            setShowList: setFilms,
+            setLoading: setLoading,
+        })
     }, [])
     const [viewLength, setViewLength] = useState(3);
     return <>
@@ -26,6 +32,7 @@ function Home() {
                 </section>
                 <section>
                     <h2 className={styles.home__subtitle}>Найкращий вибір:</h2>
+                    {loading && <LoaderWheel />}
                     <FilmGrid filmList={films.slice(0, viewLength)} />
                     {(films.length > viewLength) &&
                         <button onClick={() => setViewLength(3 + viewLength)}> Show More</button>}

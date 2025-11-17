@@ -7,11 +7,15 @@ import './assets/global.css'
 import { FilmsContext } from '@/context/context'
 import ItemPage from './pages/ItemPage/ItemPage'
 import getFilms from "@/api/getFIlms";
+import { Provider } from "react-redux"
+import store from './api/store'
+import Cart from './pages/Cart/Cart'
 const router = createBrowserRouter([
     { path: "/", element: <Home /> },
     { path: "/catalog", element: <Catalog /> },
+    { path: '/films/:id', element: <ItemPage /> },
+    { path: '/cart', element: <Cart /> },
     { path: '*', element: <p>Not Found 404</p> },
-    { path: '/films/:id', element: <ItemPage /> }
 ])
 
 // const numbers = [1, 2, 3, 5, 6]
@@ -28,6 +32,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <StrictMode>
-        <RouterProvider router={router} />
+        <Provider store={store}>
+            <RouterProvider router={router} />
+        </Provider>
     </StrictMode>,
 )

@@ -7,26 +7,27 @@ import Container from '@/components/Container/Container'
 import styles from './ItemPage.module.css'
 import get_film from "../../api/getFilm";
 import LoaderWheel from "../../components/LoaderWheel/LoaderWheel";
+import { addFilmToCart } from "../../api/filmCartSlice";
+import { useDispatch } from "react-redux";
 function ItemPage() {
     const { id } = useParams()
     const [film, setFilm] = useState()
     const [error, setError] = useState()
     const [loading, setLoading] = useState(true)
+    const dispatch = useDispatch()
+
     useEffect(() => {
         get_film({
             id: id,
-            setFilm: setFilm,
             setError: setError,
             setLoading: setLoading
+        }).then((film) => {
+            setFilm(film)
+        }).catch((err) => {
+            console.log(err)
         })
     }, [])
-    // if (res == null) {
-    //     return <>
-    //         <Header />
-    //         <p>404 No item with such id</p>
-    //         <Footer />
-    //     </>
-    // }
+
     return <>
         <Header />
         <Container>
@@ -48,6 +49,13 @@ function ItemPage() {
                         </div>
                         <h2>Description</h2>
                         <p>{film.description}</p>
+                        <button onClick={() => {
+                            dispatch(addFilmToCart({
+                                filmId: id,
+                                filmCount: 1
+                            }))
+                        }}>Add to the cart</button>
+
                     </>
                 }
             </div>
