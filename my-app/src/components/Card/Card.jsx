@@ -17,7 +17,8 @@ function Card({ id, title, duration, reviews }) {
             <button onClick={() => {
                 dispatch(addFilmToCart({
                     filmId: id,
-                    filmCount: 1
+                    filmCount: 1,
+                    filmName: title
                 }))
             }}>Add to the cart</button>
         </li>

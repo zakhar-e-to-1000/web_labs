@@ -5,11 +5,20 @@ const filmCartSlice = createSlice({
     initialState: {},
     reducers: {
         addFilmToCart: (state, action) => {
-            const { filmCount, filmId } = action.payload;
-            const num = filmCount + (state[filmId] ?? 0)
+            const { filmCount, filmId, filmName } = action.payload;
+            console.log("Payload:", action.payload)
+            let num = filmCount
+            const name = filmName
+            const prev = state[filmId]
+            if (prev != undefined) {
+                num += prev.filmCount
+            }
             state = {
                 ...state,
-                [filmId]: num
+                [filmId]: {
+                    filmName: name,
+                    filmCount: num,
+                }
             }
             console.log(state)
             return state
