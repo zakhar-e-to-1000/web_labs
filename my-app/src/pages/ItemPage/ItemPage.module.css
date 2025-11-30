@@ -4,15 +4,18 @@
     gap: 20px;
 }
 
-.main>img {
+.film_icon {
     min-width: 0;
     border-radius: 8px;
     height: 300px;
     width: 300px;
     object-fit: cover;
     object-position: center;
-    /* flex-basis: 728px; */
-    /* flex-shrink: 2; */
+    border: 5px solid lightgray;
+}
+
+.film_icon.director-cut {
+    border-color: red;
 }
 
 .info-pannel {
@@ -25,4 +28,9 @@
 
 .v_main {
     min-height: 100vh;
+}
+
+.select-group {
+    display: flex;
+    gap: 20px;
 }
