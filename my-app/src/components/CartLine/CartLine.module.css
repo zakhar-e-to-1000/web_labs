@@ -1,0 +1,21 @@
+.cart_line {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+    padding: 5px 0 5px 0;
+    margin: 0 20px 0 20px;
+    align-items: center;
+}
+
+.line_container> :last-child {
+    border-bottom: none;
+}
+
+.price_subgroup {
+    display: flex;
+    justify-content: start;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
