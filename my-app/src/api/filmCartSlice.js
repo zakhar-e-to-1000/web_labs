@@ -1,33 +1,55 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, nanoid } from "@reduxjs/toolkit";
+
+function compareVariations(a, b) {
+    return a.directorCut === b.directorCut
+}
+
+function getPrice(filmName, isDirector = false) {
+    const vowels = ['o', 'i', 'e', 'a', 'u']
+    let price = 300;
+    for (let i = 0; i < filmName; i++) {
+        if (vowels.includes(filmName[i])) {
+            price += 200;
+        }
+    }
+    if (isDirector) {
+        price *= 2;
+    }
+    return price;
+}
 
 const filmCartSlice = createSlice({
     name: 'filmCart',
-    initialState: {},
+    initialState: [],
     reducers: {
         addFilmToCart: (state, action) => {
-            const { filmCount, filmId, filmName } = action.payload;
-            console.log("Payload:", action.payload)
-            let num = filmCount
-            const name = filmName
-            const prev = state[filmId]
-            if (prev != undefined) {
-                num += prev.filmCount
-            }
-            state = {
-                ...state,
-                [filmId]: {
-                    filmName: name,
-                    filmCount: num,
+            const { filmId, variations, filmCount, filmName } = action.payload;
+            const { directorCut } = variations;
+            const existing = state.find((item) => {
+                return filmId === item.filmId &&
+                    compareVariations(variations, item.variations)
+            })
+            if (existing) {
+                existing.filmCount = Math.max(0, existing.filmCount + filmCount)
+            } else {
+                const new_item = {
+                    id: nanoid(),
+                    filmId,
+                    filmName,
+                    filmCount: Math.max(0, filmCount),
+                    variations,
+                    price: getPrice(filmName, directorCut)
                 }
+                state.push(new_item)
             }
-            console.log(state)
-            return state
+            console.log(JSON.stringify(state))
 
         },
         deleteFilmFromCart: (state, action) => {
-            const { filmId } = action.payload;
-            delete state[filmId]
-            return state;
+            const { id } = action.payload
+            state = state.filter((item) => {
+                return item.id != id
+            })
         }
     }
 })

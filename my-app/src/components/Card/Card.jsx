@@ -18,7 +18,10 @@ function Card({ id, title, duration, reviews }) {
                 dispatch(addFilmToCart({
                     filmId: id,
                     filmCount: 1,
-                    filmName: title
+                    filmName: title,
+                    variations: {
+                        directorCut: false
+                    }
                 }))
             }}>Add to the cart</button>
         </li>
