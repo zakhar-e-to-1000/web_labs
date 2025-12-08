@@ -1,24 +1,37 @@
 import styles from './Cart.module.css'
+import styles_2 from '../../components/CartLine/CartLine.module.css'
 import Container from "../../components/Container/Container"
 import Footer from "../../components/Footer/Footer"
 import Header from "../../components/Header/Header"
 import { useSelector } from 'react-redux'
-import store from '../../api/store'
 import { useEffect, useMemo, useState } from 'react'
-import get_film from '../../api/getFilm'
+import CartLine from '../../components/CartLine/CartLine'
+
 function Cart() {
-    const dict = useSelector((state) => state.filmCart)
+    const filmCart = useSelector((state) => state.filmCart)
     const renderList = useMemo(() => {
-        return Object.entries(dict)
-    }, [dict]
-    )
+        return filmCart.map((item) => {
+            return item.id
+        })
+    }, [filmCart])
+    const total = useMemo(() => {
+        return filmCart.reduce((sum, item) => {
+            return sum + item.price * item.filmCount
+        }, 0)
+    }, [filmCart])
+    console.log("Cart from cart: ", filmCart)
     const renderText = JSON.stringify(renderList)
     return <>
         <Header />
-        <Container>
-
-            <p>List of Films</p>
-            <p>{renderText}</p>
+        <Container className={styles['container--cart-container']}>
+            {/* <p>{renderText}</p>  */}
+            <ul className={styles_2.line_container}>
+                {renderList.map((id, ind, arr) =>
+                    <li key={id} className={styles_2['line_box']}>
+                        <CartLine cartItemId={id} />
+                    </li>)}
+            </ul>
+            <p className={styles['total-label']}>Total: ${total}</p>
         </Container>
         <Footer />
     </>

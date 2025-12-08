@@ -1,0 +1,7 @@
+.container--cart-container {
+    min-height: 70vh;
+}
+
+.total-label {
+    justify-content: end;
+}

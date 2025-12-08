@@ -21,17 +21,6 @@ const router = createBrowserRouter([
     { path: '*', element: <p>Not Found 404</p> },
 ])
 
-// const numbers = [1, 2, 3, 5, 6]
-// const films = numbers.map((num) => {
-//     return {
-//         title: `Film ${num}`,
-//         id: num,
-//         duration: 2 * num,
-//         reviews: 3 * num
-//     }
-// })
-// const films = getFilms(100)
-
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <StrictMode>

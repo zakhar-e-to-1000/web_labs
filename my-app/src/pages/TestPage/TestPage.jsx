@@ -6,9 +6,6 @@ export default function TestPage() {
     return <>
         <Header />
         <div className={styles.line_container}>
-            <CartLine />
-            <CartLine />
-            <CartLine />
         </div>
         <Footer />
     </>

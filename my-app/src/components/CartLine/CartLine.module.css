@@ -2,14 +2,22 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border-bottom: 1px solid black;
     padding: 5px 0 5px 0;
     margin: 0 20px 0 20px;
     align-items: center;
 }
 
-.line_container> :last-child {
+.line_box {
+    display: block;
+    border-bottom: 1px solid black;
+}
+
+.line_box:last-child {
     border-bottom: none;
+}
+
+p.red_class {
+    color: red;
 }
 
 .price_subgroup {

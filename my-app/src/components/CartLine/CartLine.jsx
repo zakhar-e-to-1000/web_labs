@@ -1,23 +1,50 @@
 import { useMemo } from 'react'
 import styles from './CartLine.module.css'
-import { useSelector } from 'react-redux'
-export default function CartLine({ filmId, ...props }) {
+import { useDispatch, useSelector } from 'react-redux'
+import { setFilmQuant, deleteFilmFromCart } from '../../api/filmCartSlice'
+import PrimaryButton from '../../components/PrimaryButton/PrimaryButton'
+export default function CartLine({ cartItemId, className, ...props }) {
 
-    const className = styles.cart_line
+    const class_name = styles.cart_line + ' ' + className
     const filmCart = useSelector((state) => state.filmCart)
-    const filmInfo = filmCart[filmId]
+    const filmInfo = filmCart.find((item) => {
+        return item.id === cartItemId
+    })
+    const dispatch = useDispatch()
     console.log(filmInfo)
-    const name = filmInfo.filmName;
-    const count = filmInfo.filmCount;
-    return <div className={className} {...props}>
+    const {
+        id,
+        filmId,
+        filmName,
+        filmCount,
+        variations,
+        price
+    } = filmInfo;
+    let filmColor = ''
+    if (variations.directorCut === true) {
+        filmColor = styles['red_class']
+    }
+    return <div className={class_name} {...props}>
         <p>{filmId}</p>
-        <p>{name}</p>
-        <p>Options: Director cut</p>
-        <div className={styles.price_subgroup}>
-            <p>{count}</p>
-            <button>+</button>
-            <button>-</button>
-        </div>
-        <p>$300</p>
+        <p className={filmColor}>{filmName}</p>
+        <p>Options: {JSON.stringify(variations)}</p>
+        <form>
+            <input type="number" value={filmCount} onChange={(e) => {
+                const payload = { filmId, variations, filmCount: e.target.valueAsNumber }
+                dispatch(setFilmQuant(payload))
+            }} />
+        </form>
+        <p>{price}</p>
+        <p>Total: {price * filmCount}</p>
+        <PrimaryButton onClick={
+            () => {
+
+                console.log(id)
+
+                dispatch(deleteFilmFromCart({
+                    id: id
+                }))
+            }
+        }>Delete</PrimaryButton>
     </div >
 }

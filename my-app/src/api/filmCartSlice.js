@@ -6,8 +6,8 @@ function compareVariations(a, b) {
 
 function getPrice(filmName, isDirector = false) {
     const vowels = ['o', 'i', 'e', 'a', 'u']
-    let price = 300;
-    for (let i = 0; i < filmName; i++) {
+    let price = 100;
+    for (let i = 0; i < filmName.length; i++) {
         if (vowels.includes(filmName[i])) {
             price += 200;
         }
@@ -16,6 +16,19 @@ function getPrice(filmName, isDirector = false) {
         price *= 2;
     }
     return price;
+}
+
+export const loadMyState = () => {
+    const stateSerialized = localStorage.getItem("reduxState")
+    if (stateSerialized === null) {
+        return undefined
+    }
+    return JSON.parse(stateSerialized)
+}
+
+export const saveState = (state) => {
+    const stateSerialized = JSON.stringify(state)
+    localStorage.setItem("reduxState", stateSerialized)
 }
 
 const filmCartSlice = createSlice({
@@ -45,14 +58,26 @@ const filmCartSlice = createSlice({
             console.log(JSON.stringify(state))
 
         },
+        setFilmQuant: (state, action) => {
+            const { filmId, variations, filmCount } = action.payload;
+            const existing = state.find((item) => {
+                return filmId === item.filmId &&
+                    compareVariations(variations, item.variations)
+            })
+            if (existing) {
+                existing.filmCount = filmCount
+            }
+            console.log(JSON.stringify(state))
+
+        },
         deleteFilmFromCart: (state, action) => {
             const { id } = action.payload
-            state = state.filter((item) => {
-                return item.id != id
+            return state.filter((item) => {
+                return item.id !== id
             })
         }
     }
 })
 
-export const { addFilmToCart, deleteFilmFromCart } = filmCartSlice.actions;
+export const { addFilmToCart, deleteFilmFromCart, setFilmQuant } = filmCartSlice.actions;
 export default filmCartSlice.reducer
