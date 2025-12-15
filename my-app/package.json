@@ -12,12 +12,15 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.10.1",
     "axios": "^1.12.2",
+    "formik": "^2.4.9",
     "nanoid": "^5.1.6",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-icons": "^5.5.0",
     "react-redux": "^9.2.0",
-    "react-router": "^7.9.4"
+    "react-router": "^7.9.4",
+    "yap": "^0.0.2",
+    "yup": "^1.7.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",

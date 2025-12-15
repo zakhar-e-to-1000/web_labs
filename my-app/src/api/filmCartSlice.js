@@ -75,9 +75,12 @@ const filmCartSlice = createSlice({
             return state.filter((item) => {
                 return item.id !== id
             })
+        },
+        clearFilmCart: () => {
+            return []
         }
     }
 })
 
-export const { addFilmToCart, deleteFilmFromCart, setFilmQuant } = filmCartSlice.actions;
+export const { addFilmToCart, deleteFilmFromCart, setFilmQuant, clearFilmCart } = filmCartSlice.actions;
 export default filmCartSlice.reducer

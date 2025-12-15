@@ -6,7 +6,8 @@ import Header from "../../components/Header/Header"
 import { useSelector } from 'react-redux'
 import { useEffect, useMemo, useState } from 'react'
 import CartLine from '../../components/CartLine/CartLine'
-
+import { Link } from 'react-router'
+import PrimaryButton from '../../components/PrimaryButton/PrimaryButton'
 function Cart() {
     const filmCart = useSelector((state) => state.filmCart)
     const renderList = useMemo(() => {
@@ -32,6 +33,7 @@ function Cart() {
                     </li>)}
             </ul>
             <p className={styles['total-label']}>Total: ${total}</p>
+            {renderList.length > 0 && <Link to='/test'> <PrimaryButton>Checkout</PrimaryButton></Link>}
         </Container>
         <Footer />
     </>

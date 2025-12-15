@@ -11,13 +11,14 @@ import { Provider } from "react-redux"
 import store from './api/store'
 import Cart from './pages/Cart/Cart'
 import TestPage from './pages/TestPage/TestPage'
-
+import SuccessPage from './pages/Success/Success'
 const router = createBrowserRouter([
     { path: "/", element: <Home /> },
     { path: "/catalog", element: <Catalog /> },
     { path: '/films/:id', element: <ItemPage /> },
     { path: '/cart', element: <Cart /> },
     { path: '/test', element: <TestPage /> },
+    { path: '/success', element: <SuccessPage /> },
     { path: '*', element: <p>Not Found 404</p> },
 ])
 
