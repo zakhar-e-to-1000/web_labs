@@ -19,7 +19,11 @@ function getPrice(filmName, isDirector = false) {
 }
 
 export const loadMyState = () => {
-    const stateSerialized = localStorage.getItem("reduxState")
+    const token = localStorage.getItem("email")
+    if (token == null) {
+        return undefined
+    }
+    const stateSerialized = localStorage.getItem(token)
     if (stateSerialized === null) {
         return undefined
     }
@@ -28,7 +32,12 @@ export const loadMyState = () => {
 
 export const saveState = (state) => {
     const stateSerialized = JSON.stringify(state)
-    localStorage.setItem("reduxState", stateSerialized)
+    const token = localStorage.getItem("email")
+    if (token != null) {
+        localStorage.setItem(token, stateSerialized)
+    } else {
+        console.log("error")
+    }
 }
 
 const filmCartSlice = createSlice({
@@ -78,9 +87,17 @@ const filmCartSlice = createSlice({
         },
         clearFilmCart: () => {
             return []
+        },
+        resetFilmCart: () => {
+            const res = loadMyState()
+            if (res != undefined) {
+                return res.filmCart
+            } else {
+                return []
+            }
         }
     }
 })
 
-export const { addFilmToCart, deleteFilmFromCart, setFilmQuant, clearFilmCart } = filmCartSlice.actions;
+export const { resetFilmCart, addFilmToCart, deleteFilmFromCart, setFilmQuant, clearFilmCart } = filmCartSlice.actions;
 export default filmCartSlice.reducer

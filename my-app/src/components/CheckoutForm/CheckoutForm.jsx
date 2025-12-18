@@ -15,26 +15,36 @@ const schema = Yup.object().shape({
     Phone: Yup.string().trim().matches(phoneRegex, 'wrong phone').required(),
     Adress: Yup.string().min(10).required(),
 })
+const initVals =
+{
+    FirstName: '',
+    LastName: '',
+    Email: '',
+    Phone: '',
+    Adress: ''
+}
 
+const myVals = {
+    FirstName: 'ffffff',
+    LastName: 'ffffff',
+    Email: 'zaharkobinec@gmail.com',
+    Phone: '380668711995',
+    Adress: 'fffffffffffffffff'
+
+}
 export default function CheckoutForm() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     return <div>
 
-        <Formik initialValues={{
-            FirstName: '',
-            LastName: '',
-            Email: '',
-            Phone: '',
-            Adress: ''
-        }}
+        <Formik initialValues={initVals}
             validationSchema={schema}
             onSubmit={(vals) => {
                 console.log(vals)
                 dispatch(clearFilmCart())
                 navigate('/success')
             }}>
-            {({ errors, touched }) => (
+            {({ errors, touched, setValues }) => (
                 <Form className={styles.form}>
                     <Field name='FirstName' className={styles['input']} placeholder='First Name' />
                     {errors.FirstName && touched.FirstName ? (
@@ -56,7 +66,9 @@ export default function CheckoutForm() {
                     {errors.Adress && touched.Adress ? (
                         <div>{errors.Adress}</div>
                     ) : null}
-
+                    <button type="button" onClick={() => {
+                        setValues(myVals)
+                    }}>Default</button>
                     <button type="submit">Submit</button>
                 </Form>
             )}

@@ -71,8 +71,6 @@ function SearchForm({ optionsHook }) {
             <PrimaryButton onClick={submit}>Apply</PrimaryButton>
             <PrimaryButton onClick={reset}>Reset</PrimaryButton>
         </div>
-        <p>{JSON.stringify(durationRange)}</p>
-        <p>{JSON.stringify(reviewsRange)}</p>
     </form>
 }
 

@@ -27,7 +27,7 @@ export default function CartLine({ cartItemId, className, ...props }) {
     return <div className={class_name} {...props}>
         <p>{filmId}</p>
         <p className={filmColor}>{filmName}</p>
-        <p>Options: {JSON.stringify(variations)}</p>
+        <p>{variations.directorCut ? "Options: Director cut" : "No options"}</p>
         <form>
             <input type="number" value={filmCount} onChange={(e) => {
                 const payload = { filmId, variations, filmCount: e.target.valueAsNumber }
